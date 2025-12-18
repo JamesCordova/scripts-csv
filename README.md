@@ -38,14 +38,14 @@ Crea la carpeta `data/arequipa/` con el archivo XLSX y CSV.
 
 ### Descargar todos los departamentos del Perú
 ```bash
-# Solo XLSX
+# Por defecto descarga XLSX y convierte a CSV (con limpieza automática)
 python download_all_departments.py
 
-# XLSX + CSV
-python download_all_departments.py --csv
+# Solo descargar XLSX (sin conversión a CSV)
+python download_all_departments.py --no-csv
 
 # Especificar directorio de salida
-python download_all_departments.py --output mi_carpeta --csv
+python download_all_departments.py --output mi_carpeta
 ```
 
 ### Convertir XLSX a CSV
