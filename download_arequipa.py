@@ -6,8 +6,8 @@ from download_xls import download_mef_data
 from xlsx_to_csv import xlsx_to_csv
 
 
-# Código de departamento para Arequipa
-AREQUIPA_CODE = "04"
+# Código de departamento para Arequipa (nuevo formato de la API)
+AREQUIPA_CODE = "4"
 
 
 def main():

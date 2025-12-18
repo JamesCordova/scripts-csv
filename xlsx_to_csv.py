@@ -1,5 +1,12 @@
 """
 Conversor de XLSX a CSV con limpieza automática de metadata.
+
+Este script elimina automáticamente las filas de metadata que aparecen
+antes del header con la columna 'CUI' en los archivos del MEF.
+
+Ejemplo de uso:
+    python xlsx_to_csv.py archivo.xlsx -o salida.csv
+    python xlsx_to_csv.py archivo.xlsx --no-clean  # Sin limpieza
 """
 import openpyxl
 import csv
@@ -11,18 +18,31 @@ from typing import Optional
 def detect_header_row(sheet) -> int:
     """
     Detecta la fila donde comienzan los datos reales (después de metadata).
+    Busca específicamente la fila que contiene 'CUI' como primera columna.
     
     Args:
         sheet: Hoja de Excel
         
     Returns:
-        Número de fila donde comienza el header
+        Número de fila donde comienza el header (1-indexed)
     """
     for idx, row in enumerate(sheet.iter_rows(max_row=20), start=1):
-        # Buscar fila con múltiples celdas no vacías (probable header)
-        non_empty = sum(1 for cell in row if cell.value is not None)
-        if non_empty >= 3:
+        # Buscar la fila que contiene 'CUI' en la primera celda
+        first_cell = row[0].value
+        if first_cell and str(first_cell).strip().upper() == 'CUI':
             return idx
+        
+        # Alternativa: buscar fila con 'CUI' en cualquier posición
+        for cell in row:
+            if cell.value and str(cell.value).strip().upper() == 'CUI':
+                return idx
+    
+    # Fallback: buscar fila con múltiples celdas no vacías
+    for idx, row in enumerate(sheet.iter_rows(max_row=20), start=1):
+        non_empty = sum(1 for cell in row if cell.value is not None)
+        if non_empty >= 10:  # Header típico tiene muchas columnas
+            return idx
+    
     return 1
 
 

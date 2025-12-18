@@ -7,17 +7,17 @@ from download_xls import download_mef_data
 from xlsx_to_csv import xlsx_to_csv
 
 
-# Códigos UBIGEO de departamentos del Perú
+# Códigos de departamentos del Perú (nuevo formato de la API)
 DEPARTMENTS = {
-    "01": "Amazonas",
-    "02": "Áncash",
-    "03": "Apurímac",
-    "04": "Arequipa",
-    "05": "Ayacucho",
-    "06": "Cajamarca",
-    "07": "Callao",
-    "08": "Cusco",
-    "09": "Huancavelica",
+    "1": "Amazonas",
+    "2": "Áncash",
+    "3": "Apurímac",
+    "4": "Arequipa",
+    "5": "Ayacucho",
+    "6": "Cajamarca",
+    "7": "Callao",
+    "8": "Cusco",
+    "9": "Huancavelica",
     "10": "Huánuco",
     "11": "Ica",
     "12": "Junín",
