@@ -72,6 +72,7 @@ def csv_to_json_with_structure(csv_file, json_file):
             transformed_row = {
                 'avance': avance,
                 'categoryId': category_map[funcion]['id'],
+                'cui': row['CUI'].strip() if row['CUI'] else '',
                 'createdAt': int(time.time() * 1000),
                 'description': DEFAULT_DESCRIPTION,
                 'id': project_id,
